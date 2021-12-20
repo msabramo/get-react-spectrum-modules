@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Get an array of React Spectrum modules; useful for using RS w/ Next.js",
   "main": "src/getModules.js",
+  "files": [
+    "src/",
+    "README.md"
+  ],
   "scripts": {
     "lint": "eslint src/",
     "lint:fix": "eslint --fix src/",
