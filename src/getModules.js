@@ -27,24 +27,22 @@
 
 const fs = require("fs");
 
-const flatten = (arr) => arr.reduce((acc, val) => acc.concat(val));
-
-const getModules = () =>
-  flatten(
-    // Returns something like [
-    //   '@adobe/react-spectrum',
-    //   '@adobe/react-spectrum-ui',
-    //   '@adobe/react-spectrum-workflow',
-    //   '@react-spectrum/actiongroup',
-    //   '@react-spectrum/breadcrumbs',
-    //   '@react-spectrum/button',
-    //    ...
-    //   '@spectrum-icons/ui',
-    //   '@spectrum-icons/workflow'
-    // ]
-    ["@adobe", "@react-spectrum", "@spectrum-icons"].map((ns) =>
-      fs.readdirSync(`./node_modules/${ns}`).map((dir) => `${ns}/${dir}`),
-    ),
-  );
-
-module.exports = getModules;
+// Returns something like [
+//   '@adobe/react-spectrum',
+//   '@adobe/react-spectrum-ui',
+//   '@adobe/react-spectrum-workflow',
+//   '@react-spectrum/actiongroup',
+//   '@react-spectrum/breadcrumbs',
+//   '@react-spectrum/button',
+//    ...
+//   '@spectrum-icons/ui',
+//   '@spectrum-icons/workflow'
+// ]
+module.exports = () =>
+[
+  "@adobe",
+  "@react-spectrum",
+  "@spectrum-icons"
+].flatMap((ns) =>
+  fs.readdirSync(`./node_modules/${ns}`).map((dir) => `${ns}/${dir}`),
+);
